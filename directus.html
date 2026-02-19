@@ -1,0 +1,54 @@
+<script type="text/javascript">
+    RED.nodes.registerType('directus', {
+        category: 'network',
+        color: '#64f',
+        defaults: {
+            name: { value: '' },
+            server: {value:'', type:"directus-config"},
+            collection: { value: '' },
+            method: { value: 'GET' },
+            mode: { value: 'single' }
+        },
+        inputs: 1,
+        outputs: 2,
+        icon: 'directus.io.svg',
+        label() {
+            return this.collection+ ' - ' + this.method + (this.mode === "single" ? " Single Item" : " Multiple Items") || this.name + ' - ' + this.method + (this.mode === "single" ? " Single Item" : " Multiple Items") || 'Directus API';
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="directus">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-tag"></i> Directus Configuration</label>
+        <input type="directus-config" id="node-input-server" placeholder="Directus Configuration" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-collection"><i class="fa fa-tag"></i> Collection</label>
+        <input type="text" id="node-input-collection" placeholder="Collection" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-method"><i class="fa fa-tasks"></i> Methode</label>
+        <select id="node-input-method">
+            <option value="GET">Read Data (GET)</option>
+            <option value="POST">Create Data (POST)</option>
+            <option value="PATCH">Update Data (PATCH)</option>
+            <option value="DELETE">Delete Data (DELETE)</option>
+        </select>
+    </div>
+        <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-tasks"></i> Mode</label>
+        <select id="node-input-mode">
+            <option value="single">Single Item</option>
+            <option value="multiple">Multiple Items</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="directus">
+    <p>A node that connects to a Directus API instance</p>
+</script>
