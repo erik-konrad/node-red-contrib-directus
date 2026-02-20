@@ -11,6 +11,8 @@
         },
         inputs: 1,
         outputs: 2,
+        inputLabels: ['Input'],
+        outputLabels: ['Success', 'Error'],
         icon: 'directus.io.svg',
         label() {
             return this.collection+ ' - ' + this.method + (this.mode === "single" ? " Single Item" : " Multiple Items") || this.name + ' - ' + this.method + (this.mode === "single" ? " Single Item" : " Multiple Items") || 'Directus API';
