@@ -1,6 +1,6 @@
 <script type="text/javascript">
-    RED.nodes.registerType('directus', {
-        category: 'network',
+    RED.nodes.registerType('directus-collections', {
+        category: 'Directus',
         color: '#64f',
         defaults: {
             name: { value: '' },
@@ -15,12 +15,12 @@
         outputLabels: ['Success', 'Error'],
         icon: 'directus.io.svg',
         label() {
-            return this.collection+ ' - ' + this.method + (this.mode === "single" ? " Single Item" : " Multiple Items") || this.name + ' - ' + this.method + (this.mode === "single" ? " Single Item" : " Multiple Items") || 'Directus API';
+            return this.collection+ ' - ' + this.method + (this.mode === "single" ? " Single Item" : " Multiple Items") || this.name + ' - ' + this.method + (this.mode === "single" ? " Single Item" : " Multiple Items") || 'Directus Collections';
         }
     });
 </script>
 
-<script type="text/html" data-template-name="directus">
+<script type="text/html" data-template-name="directus-collections">
     <div class="form-row">
         <label for="node-input-server"><i class="fa fa-tag"></i> Directus Configuration</label>
         <input type="directus-config" id="node-input-server" placeholder="Directus Configuration" />
@@ -51,6 +51,7 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="directus">
+<script type="text/html" data-help-name="directus-collections">
+
     <p>A node that connects to a Directus API instance</p>
 </script>

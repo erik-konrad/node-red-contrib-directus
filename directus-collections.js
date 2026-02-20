@@ -3,7 +3,7 @@ const { createDirectus, rest, readItem, readItems, updateItem, updateItems, crea
 
 
 module.exports = function(RED) {
-    function DirectusNode(config) {
+    function DirectusCollectionsNode(config) {
         RED.nodes.createNode(this, config);
 
         this.serverConfig = RED.nodes.getNode(config.server);
@@ -38,11 +38,11 @@ module.exports = function(RED) {
                     case 'GET':
                         if(mode === 'single') {
                             response = await client.request(
-                                readItem(collection, msg.payload, msg.query || {})
+                                readItem(collection, msg.itemId || msg.payload, msg.query || {})
                             );
                         } else {
                             response = await client.request(
-                                readItems(collection, msg.query || {
+                                readItems(collection, msg.query || msg.payload || {
                                     limit: -1,
                                     fields: ['*']
                                 })
@@ -60,14 +60,14 @@ module.exports = function(RED) {
                         if(mode === 'single') {
                             response = await client.request(updateItem(collection, msg.itemId, msg.payload, msg.query || {}));
                         } else {
-                            response = await client.request(updateItems(collection, msg.keysOrQuery, msg.payload, msg.query || {}));
+                            response = await client.request(updateItems(collection, msg.query, msg.payload));
                         }
                     break;
                     case 'DELETE':
                         if(mode === 'single') {
                             response = await client.request(deleteItem(collection, msg.payload));
                         } else {
-                            response = await client.request(deleteItems(collection, msg.payload));
+                            response = await client.request(deleteItems(collection, msg.query || msg.payload));
                         }
                     break;
                 }
@@ -88,5 +88,5 @@ module.exports = function(RED) {
         node.status({fill:"green", shape:"dot", text:"idle"});
     }
 
-    RED.nodes.registerType("directus", DirectusNode);
+    RED.nodes.registerType("directus-collections", DirectusCollectionsNode);
 }

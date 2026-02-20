@@ -5,7 +5,7 @@
     "main": "index.js",
     "node-red": {
         "nodes": {
-            "directus": "directus.js",
+            "directus-collections": "directus-collections.js",
             "directus-config": "directus-config.js"
         }
     },
