@@ -72,8 +72,6 @@ module.exports = function(RED) {
                     break;
                 }
 
-
-
                 msg.payload = response;
                 node.send([msg, null]);
                 node.status({fill:"green", shape:"dot", text:"idle"});
