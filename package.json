@@ -8,6 +8,7 @@
         "email": "e_konrad84@yahoo.de"
     },
     "node-red": {
+        "version": ">=4.0.0",
         "nodes": {
             "directus-items": "directus-items.js",
             "directus-config": "directus-config.js"
@@ -16,7 +17,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "keywords": [],
+    "keywords": [ "node-red" ],
     "license": "ISC",
     "dependencies": {
         "@directus/sdk": "^21.1.0"
