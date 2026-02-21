@@ -3,9 +3,13 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "author": {
+        "name": "Erik Konrad",
+        "email": "e_konrad84@yahoo.de"
+    },
     "node-red": {
         "nodes": {
-            "directus-collections": "directus-collections.js",
+            "directus-items": "directus-items.js",
             "directus-config": "directus-config.js"
         }
     },
@@ -13,7 +17,6 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
-    "author": "",
     "license": "ISC",
     "dependencies": {
         "@directus/sdk": "^21.1.0"

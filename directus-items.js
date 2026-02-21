@@ -3,7 +3,7 @@ const { createDirectus, rest, readItem, readItems, updateItem, updateItems, crea
 
 
 module.exports = function(RED) {
-    function DirectusCollectionsNode(config) {
+    function DirectusItemsNode(config) {
         RED.nodes.createNode(this, config);
 
         this.serverConfig = RED.nodes.getNode(config.server);
@@ -86,5 +86,5 @@ module.exports = function(RED) {
         node.status({fill:"green", shape:"dot", text:"idle"});
     }
 
-    RED.nodes.registerType("directus-collections", DirectusCollectionsNode);
+    RED.nodes.registerType("directus-items", DirectusItemsNode);
 }
