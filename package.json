@@ -1,6 +1,6 @@
 {
     "name": "@illusionforge/node-red-contrib-directus",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "publishConfig": {
         "access": "public"
     },
@@ -13,8 +13,9 @@
     "node-red": {
         "version": ">=4.0.0",
         "nodes": {
-            "directus-items": "directus-items.js",
-            "directus-config": "directus-config.js"
+            "directus-items": "items/directus-items.js",
+            "directus-files": "files/directus-files.js",
+            "directus-config": "config/directus-config.js"
         }
     },
     "scripts": {

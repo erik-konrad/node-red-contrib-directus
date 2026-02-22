@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    RED.nodes.registerType('directus-files', {
+        category: 'Directus',
+        color: '#64f',
+        defaults: {
+            name: { value: '' },
+            server: {value:'', type:"directus-config"},
+        },
+        inputs: 1,
+        outputs: 2,
+        inputLabels: ['Input'],
+        outputLabels: ['Success', 'Error'],
+        icon: 'directus.io.svg',
+        label() {
+            return this.name || 'Directus Files';
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="directus-files">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-tag"></i> Directus Configuration</label>
+        <input type="directus-config" id="node-input-server" placeholder="Directus Configuration" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" />
+    </div>
+</script>
+
+<script type="text/markdown" data-help-name="directus-files">
+Directus Files Node
+
+### Inputs
+
+: payload (object) : The Directus File Object. It contains all information for the directus_files table.
+: mimetype (string) : The MIME type of the file being uploaded. This is optional but can help Directus handle the file correctly. This is used by upload mode only.
+: filename (string) : The name of the file being uploaded. This is optional but can help Directus handle the file correctly. This is used by upload mode only.
+: file (Buffer) : The file buffer for the upload. this can be the output from the read-file standard node. This is used by upload mode only.
+: url (string) : The URL of the file to be imported. This is used by import mode only.
+
+### Outputs
+1. Standard output with the result of the file upload or import.
+: payload (object) : The output will contain the response from Directus if the file upload or import was successful.
+2. Error output with the error message if the file upload or import failed.
+: payload (object) : The output will contain the error message if the file upload or import failed.
+
+This node auto detects if you want to upload a file or import it from a URL. If ``msg.url`` is set, it will import the file from the URL. If ``msg.file`` is set, it will upload the file buffer. For simplification, you can also send a simple file url as ``msg.payload`` for importing files.

@@ -23,6 +23,7 @@ module.exports = function(RED) {
             node.status({fill:"green", shape:"dot", text:"ready"});
         }).catch((error) => {
             node.status({fill:"red", shape:"dot", text:"error"});
+            node.error(error);
         })
 
         node.on('input', async function(msg) {
