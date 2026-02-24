@@ -4,7 +4,8 @@
         color: '#64f',
         defaults: {
             name: { value: '' },
-            target: { value:'', type:"directus-config" }
+            target: { value:'', type:"directus-config" },
+            keep: { value: false }
         },
         inputs: 1,
         outputs: 2,
@@ -26,9 +27,28 @@
         <label for="node-input-target"><i class="fa fa-tag"></i> Directus Target Configuration</label>
         <input type="directus-config" id="node-input-target" placeholder="Directus Target Configuration" />
     </div>
+    <div class="form-row">
+        <label for="node-input-keep" style="width: 70%;">Keep existing tables and fields</label>
+        <input type="checkbox" id="node-input-keep" style="display: inline-block; width: auto; vertical-align: top;" />
+    </div>
 </script>
 
 
 <script type="text/markdown" data-help-name="directus-apply-schema">
-    ### WIP
+Directus Apply Schema Node
+
+### Inputs
+: payload (object) : The diff of the Directus schema, including added, removed, and changed collections, fields, and relationships. For best results, you can use the output of the Directus Schema Diff node.
+
+### Outputs
+1. Standard Output
+: payload (object) : If nothing went wrong, the output will be null.
+2. Error Output
+: payload (object) : The error details if there was an error while applying the schema diff.
+
+This node allows you to apply a schema diff to your Directus target instance, which can be useful for updating your data structure based on changes in your schema. The input should include details about added, removed, and changed collections, fields, and relationships, and the node will attempt to apply those changes to the target Directus instance.
+### Configuration
+- **Name**: A name for the node (optional).
+- **Directus Target Configuration**: Select the Directus target configuration you want to apply the schema diff to.
+- **Keep existing tables and fields**: If enabled, the node will attempt to keep existing tables and fields that are not included in the schema diff, which can be useful if you want to preserve data that is not affected by the changes. However, use this option with caution, as it may lead to unexpected results if there are significant differences between the schemas.
 </script>

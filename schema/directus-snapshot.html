@@ -30,5 +30,19 @@
 
 
 <script type="text/markdown" data-help-name="directus-snapshot">
-    ### WIP
+Directus Snapshot Node
+
+### Inputs
+An input is not required.
+
+### Outputs
+1. Standard Output
+: payload (object) : The snapshot of the Directus schema, including collections, fields, and relationships.
+2. Error Output
+: payload (object) : The error details if there was an error while retrieving the schema snapshot.
+
+This node allows you to retrieve a snapshot of the Directus schema, which can be useful for understanding the structure of your data and for debugging purposes. The output will include details about all collections, their fields, and any relationships between them.
+### Configuration
+- **Directus Configuration**: Select the Directus configuration you want to use for this node.
+- **Name**: A name for the node (optional).
 </script>

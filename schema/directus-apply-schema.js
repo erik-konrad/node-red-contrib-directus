@@ -28,7 +28,38 @@ module.exports = function(RED) {
 
         node.on('input', async function(msg) {
             node.status({fill:"blue", shape:"dot", text:"applying schema..."});
-            
+
+            const systemFields = ['user_created', 'user_updated', 'date_created', 'date_updated'];
+
+            if (msg.payload.diff.fields) {
+                msg.payload.diff.fields = msg.payload.diff.fields.filter(field => {
+                    const fieldName = field.field;
+                    
+                    if (systemFields.includes(fieldName)) {
+                        const isEdit = field.diff && field.diff.some(d => d.kind === 'E');
+                        
+                        if (isEdit) {
+                            return false; 
+                        }
+                    }
+
+                    if(config.keep) {
+                        const isFieldDelete = field.diff && field.diff.some(d => d.kind === 'D');
+                        if (isFieldDelete) return false;
+                    }
+
+                    return true;
+                });
+            }
+
+            if(config.keep) { 
+                if (msg.payload && msg.payload.diff && msg.payload.diff.collections) {
+                    msg.payload.diff.collections = msg.payload.diff.collections.filter(coll => {
+                        return coll.diff.every(d => d.kind !== 'D'); 
+                    });
+                }
+            }
+
             try {
                 const response = await client.request(schemaApply(msg.payload, true));
 

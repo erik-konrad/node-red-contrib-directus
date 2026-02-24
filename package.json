@@ -1,10 +1,10 @@
 {
     "name": "@illusionforge/node-red-contrib-directus",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "publishConfig": {
         "access": "public"
     },
-    "description": "A node collection for Node-RED to interact with Directus, a headless CMS. This package provides nodes to perform CRUD operations on Directus collections and items.",
+    "description": "A node collection for Node-RED to interact with Directus, a headless CMS. This package provides nodes to perform CRUD operations on Directus collections and items, upload and import files and syncing the schema of your instances.",
     "main": "index.js",
     "author": {
         "name": "Erik Konrad",

@@ -1,8 +1,5 @@
 const {createDirectus, staticToken, serverPing, rest, schemaSnapshot} = require('@directus/sdk');
 
-
-
-
 module.exports = function(RED) {
     function DirectusSnapshotNode(config) {
         RED.nodes.createNode(this, config);
