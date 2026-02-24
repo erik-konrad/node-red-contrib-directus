@@ -1,0 +1,34 @@
+<script type="text/javascript">
+    RED.nodes.registerType('directus-snapshot', {
+        category: 'Directus',
+        color: '#64f',
+        defaults: {
+            name: { value: '' },
+            server: {value:'', type:"directus-config"}
+        },
+        inputs: 1,
+        outputs: 2,
+        inputLabels: ['Input'],
+        outputLabels: ['Success', 'Error'],
+        icon: 'directus.io.svg',
+        label() {
+            return this.name || 'Directus Schema Snapshot';
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="directus-snapshot">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-tag"></i> Directus Configuration</label>
+        <input type="directus-config" id="node-input-server" placeholder="Directus Configuration" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" />
+    </div>
+</script>
+
+
+<script type="text/markdown" data-help-name="directus-snapshot">
+    ### WIP
+</script>

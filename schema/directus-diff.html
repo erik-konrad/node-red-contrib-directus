@@ -1,0 +1,39 @@
+<script type="text/javascript">
+    RED.nodes.registerType('directus-diff', {
+        category: 'Directus',
+        color: '#64f',
+        defaults: {
+            name: { value: '' },
+            target: {value: '', type: "directus-config"},
+            force: { value: false }
+        },
+        inputs: 1,
+        outputs: 2,
+        inputLabels: ['Input'],
+        outputLabels: ['Success', 'Error'],
+        icon: 'directus.io.svg',
+        label() {
+            return this.name || 'Directus Schema Diff';
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="directus-diff">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-target"><i class="fa fa-tag"></i> Directus Target Configuration</label>
+        <input type="text" id="node-input-target" placeholder="Directus Target Configuration" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-force" style="width: 70%;">Ignore Version and vendor restrictions</label>
+        <input type="checkbox" id="node-input-force" style="display: inline-block; width: auto; vertical-align: top;" />
+    </div>
+</script>
+
+
+<script type="text/markdown" data-help-name="directus-diff">
+    ### WIP
+</script>
