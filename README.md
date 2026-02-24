@@ -63,3 +63,54 @@ For more information on how to use this node, please refer to the Directus API d
 : payload (object) : The output will contain the error message if the file upload or import failed.
 
 This node auto detects if you want to upload a file or import it from a URL. If ``msg.url`` is set, it will import the file from the URL. If ``msg.file`` is set, it will upload the file buffer. For simplification, you can also send a simple file url as ``msg.payload`` for importing files.
+
+### Directus Snapshot Node
+
+#### Inputs
+An input is not required.
+
+#### Outputs
+1. Standard Output
+: payload (object) : The snapshot of the Directus schema, including collections, fields, and relationships.
+2. Error Output
+: payload (object) : The error details if there was an error while retrieving the schema snapshot.
+
+This node allows you to retrieve a snapshot of the Directus schema, which can be useful for understanding the structure of your data and for debugging purposes. The output will include details about all collections, their fields, and any relationships between them.
+#### Configuration
+- **Directus Configuration**: Select the Directus configuration you want to use for this node.
+- **Name**: A name for the node (optional).
+
+### Directus Schema Diff Node
+
+#### Inputs
+: payload (object) : The current snapshot of the Directus schema, including collections, fields, and relationships. For best results, you can use the output of the Directus Schema Snapshot node.
+
+#### Outputs
+1. Standard Output
+: payload (object) : the diff from the current snapshot to the target snapshot, including added, removed, and changed collections, fields, and relationships.
+2. Error Output
+: payload (object) : The error details if there was an error while calculating the schema diff.
+
+This node allows you to calculate the difference between the current Directus schema and a target schema, which can be useful for understanding changes in your data structure and for debugging purposes. The output will include details about added, removed, and changed collections, fields, and relationships.
+
+#### Configuration
+- **Name**: A name for the node (optional).
+- **Directus Target Configuration**: Select the Directus target configuration you want to compare against.
+- **Ignore Version and vendor restrictions**: If enabled, the diff will ignore version and vendor restrictions, which can be useful if you want to compare schemas from different Directus versions or vendors. However, use this option with caution, as it may lead to unexpected results if there are significant differences between the schemas.
+
+### Directus Apply Schema Node
+
+#### Inputs
+: payload (object) : The diff of the Directus schema, including added, removed, and changed collections, fields, and relationships. For best results, you can use the output of the Directus Schema Diff node.
+
+#### Outputs
+1. Standard Output
+: payload (object) : If nothing went wrong, the output will be null.
+2. Error Output
+: payload (object) : The error details if there was an error while applying the schema diff.
+
+This node allows you to apply a schema diff to your Directus target instance, which can be useful for updating your data structure based on changes in your schema. The input should include details about added, removed, and changed collections, fields, and relationships, and the node will attempt to apply those changes to the target Directus instance.
+#### Configuration
+- **Name**: A name for the node (optional).
+- **Directus Target Configuration**: Select the Directus target configuration you want to apply the schema diff to.
+- **Keep existing tables and fields**: If enabled, the node will attempt to keep existing tables and fields that are not included in the schema diff, which can be useful if you want to preserve data that is not affected by the changes. However, use this option with caution, as it may lead to unexpected results if there are significant differences between the schemas.
